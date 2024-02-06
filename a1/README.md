@@ -1,3 +1,5 @@
+## Assignment 1: Database System Process models
+
 In this assignment, you will get some hands-on experience exploring the performance and architectural differences between database system process models. The main challenge of this assignment will be to understand the existing code that we are providing you. By reading through this code, we hope you will get a sense of some of the basic implementation differences between thread-based and process-based process models.
 
 - Assignment 1: The latex template for your submission can be found in cmsc624-a1-sol-template. You can upload the template to [Overleaf](https://www.overleaf.com/).

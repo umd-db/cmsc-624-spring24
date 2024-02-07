@@ -27,6 +27,7 @@ struct proc_state
     pthread_mutex_t *proc_mutex_; /* proc mutex exclusive lock */
     pthread_cond_t *proc_cond_;   /* proc conditional variable */
     bool *proc_ready_;             /* notify proc of a request */
+    uint32_t *proc_id_;              /* id to identify the process */
 
     proc_mgr *launcher_state_;         /* global pool mgmt state */
     volatile uint64_t *txns_executed_; /* ptr to txn executed counter */

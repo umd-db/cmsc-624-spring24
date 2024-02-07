@@ -18,7 +18,7 @@ This assignment assumes access to an x86-64 machine. For students who are using 
 ```
 docker build --platform linux/amd64 -t "cmsc624-a1" .
 
-docker run -v $PWD:/home/a1 -ti --platform linux/amd64 --cap-add=SYS_PTRACE --security-opt seccomp=unconfined  --name a1 cmsc624-a1:latest 
+docker run -v $PWD:/home/a1 -ti --platform linux/amd64 --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --memory 10g --memory-swap 20g --name a1 cmsc624-a1:latest 
 ```
 
 You can restart the container by running the following command:

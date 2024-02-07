@@ -66,12 +66,13 @@ ProcessPoolLauncher::ProcessPoolLauncher(uint32_t nprocs) : Launcher()
      * and value (procs_ready) which are used to signal the process to begin executing
      * a new request.
      *
-     * Initialize procs_ready, procs_mutex and procs_cond
+     * Initialize procs_ready, proc_id, procs_mutex and procs_cond
      *
      * When your code is ready, remove the assert(false) statement
      * below.
      */
     bool *procs_ready            = NULL;
+    uint32_t *procs_id           = NULL;
     pthread_mutex_t *procs_mutex = NULL;
     pthread_cond_t *procs_cond   = NULL;
     assert(false);
@@ -86,6 +87,7 @@ ProcessPoolLauncher::ProcessPoolLauncher(uint32_t nprocs) : Launcher()
     {
         pstates[i].request_                     = (Request *)&req_bufs[i * RQST_BUF_SZ];
         pstates[i].proc_ready_                  = &procs_ready[i];
+        pstates[i].proc_id_                     = &procs_id[i];
         pstates[i].proc_mutex_                  = &procs_mutex[i];
         pstates[i].proc_cond_                   = &procs_cond[i];
         pstates[i].launcher_state_              = launcher_state_;
@@ -130,6 +132,9 @@ ProcessPoolLauncher::~ProcessPoolLauncher()
     while (pstate != NULL)
     {
         err = munmap((void *)pstate->proc_ready_, sizeof(bool));
+        assert(err == 0);
+
+        err = munmap((void *)pstate->proc_id_, sizeof(uint32_t));
         assert(err == 0);
 
         pthread_mutex_destroy(pstate->proc_mutex_);
@@ -205,6 +210,8 @@ void ProcessPoolLauncher::ExecuteRequest(Request *req)
      * exist idle processes.
      * 
      * Hint: Use the API from txn/request.h to copy the request.
+     * 
+     * Hint: Remeber to use the process with proc_id_ = 0 for high priority requests.
      *
      * When your code is ready, remove the assert(false) statement
      * below.

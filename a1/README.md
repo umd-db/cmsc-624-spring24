@@ -173,7 +173,7 @@ process_pool 2000 3000 4000 5000 6000 7000 ...
 Provide a brief explanation \(between three to four paragraphs\) for the throughput trends you observe in a separate file **{your name}-a1-sol.pdf** (please use [cmsc624-a1-sol-latex-template.zip]({{ "/assets/assignments/hw1/cmsc624-a1-sol-latex-template.zip" | relative_url }}){:target="\_blank"} we provided). In particular, explain the differences between each process model:
 
 * Why do some models get higher throughput than other models? 
-* For the proces-pool model, how does the pool size effect the throughput of `high_priority` transactions?
+* For the process-pool model, how does the pool size effect the throughput of `high_priority` transactions?
 * Which process model is the fastest and why is it the fastest? 
 * Which one is slowest and why is it slowest? Please use [perf](https://www.brendangregg.com/perf.html) to profile the process model and explain where the bottleneck is. For example, what are the names of the hotspot **kernel functions** and what are their purposes?
 * Why are the ones in the middle slower/faster than the two at the extremes? 
